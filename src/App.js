@@ -8,43 +8,38 @@ function App() {
     const { name } = e.target;
     setResult(result.concat(name));
   };
-  const clear = () => setResult("");
 
-  const backspace = () => setResult(result.substring(0, result.length - 1));
+  const clear = () => setResult("");
 
   const calculateResult = () => {
     try {
-      setResult(eval(result).toString());
+      let answer = eval(result).toString();
+      answer === "Infinity" ? setResult("Error") : setResult(answer);
+      // setResult();
     } catch (err) {
       setResult("Error");
     }
   };
+
+  // const backspace = () => setResult(result.substring(0, result.length - 1));
+
   return (
     <div className="calculator-container">
       <form>
         <input type="text" value={result} />
       </form>
       <div className="btn-wrapper">
-        <button className="red" id="clear" onClick={clear}>
-          Clear
+        <button name="1" onClick={clickHandler}>
+          1
         </button>
-        <button className="red" id="backspace" onClick={backspace}>
-          C
+        <button name="2" onClick={clickHandler}>
+          2
         </button>
-        <button className="yellow" name="/" onClick={clickHandler}>
-          &divide;
+        <button name="3" onClick={clickHandler}>
+          3
         </button>
-        <button name="7" onClick={clickHandler}>
-          7
-        </button>
-        <button name="8" onClick={clickHandler}>
-          8
-        </button>
-        <button name="9" onClick={clickHandler}>
-          9
-        </button>
-        <button className="yellow" name="*" onClick={clickHandler}>
-          &times;
+        <button className="yellow" name="+" onClick={clickHandler}>
+          +
         </button>
         <button name="4" onClick={clickHandler}>
           4
@@ -58,26 +53,29 @@ function App() {
         <button className="yellow" name="-" onClick={clickHandler}>
           &ndash;
         </button>
-        <button name="1" onClick={clickHandler}>
-          1
+        <button name="7" onClick={clickHandler}>
+          7
         </button>
-        <button name="2" onClick={clickHandler}>
-          2
+        <button name="8" onClick={clickHandler}>
+          8
         </button>
-        <button name="3" onClick={clickHandler}>
-          3
+        <button name="9" onClick={clickHandler}>
+          9
         </button>
-        <button className="yellow" name="+" onClick={clickHandler}>
-          +
+        <button className="yellow" name="*" onClick={clickHandler}>
+          &times;
+        </button>
+        <button className="red" id="backspace" onClick={clear}>
+          C
         </button>
         <button name="0" onClick={clickHandler}>
           0
         </button>
-        <button name="." onClick={clickHandler}>
-          .
-        </button>
         <button className="yellow" id="result" onClick={calculateResult}>
           =
+        </button>
+        <button className="yellow" name="/" onClick={clickHandler}>
+          /
         </button>
       </div>
     </div>
